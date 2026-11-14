@@ -1,4 +1,6 @@
 #include "Electrocardiograma.h"
+#include <Arduino.h
+
 
  
 Electrocardiograma::Electrocardiograma(std ::string nombre):Sensor(nombre){}
