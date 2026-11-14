@@ -1,13 +1,13 @@
 #include <Arduino.h>
 #include "Electrocardiograma.h"
 
-Electrocardiograma ecg("ECG");
+Electrocardiograma electrocardiograma("electrocardiograma");
 
 void setup() {
     Serial.begin(115200);
 }
 
 void loop() {
-    ecg.mostrarEstados();
+    electrocardiograma.mostrarEstados();
     delay(500);
 }
