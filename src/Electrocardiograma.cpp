@@ -1,14 +1,13 @@
-#include <Arduino.h
+
 #include "Electrocardiograma.h"
 
 
 
- 
-Electrocardiograma::Electrocardiograma(std ::string nombre):Sensor(nombre){}
+Electrocardiograma::Electrocardiograma(const char* nombre):Sensor(nombre){}
 double Electrocardiograma::leer() const  {
-    return 0;
+    return analogRead(10) * (5.0/1023.0);
 }
 
-const std::string& Electrocardiograma::unidad() const{
+const char* Electrocardiograma::unidad() const{
     return "mV";
 }

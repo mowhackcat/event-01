@@ -1,22 +1,19 @@
 #ifndef SENSOR_H
 #define SENSOR_H
 
-#include <string>
-#include <iostream>
-#include <stdexcept>
 
 
 class Sensor {
 private:
-std::string nombre;
+const char* nombre;
 public:
-explicit Sensor(std::string nombre);
+explicit Sensor(const char* nombre);
 
 virtual double leer () const = 0;
 
-const std::string& getNombre()const;
+const char* getNombre()const;
 
-virtual const std::string& unidad() const {return "indefinido";};
+virtual const char* unidad() const {return "indefinido";};
 
 void mostrarEstados();
 
