@@ -9,3 +9,7 @@ double Electrocardiograma::leer() const  {
 const char* Electrocardiograma::unidad() const{
     return "mV";
 }
+
+double Electrocardiograma::obtenerLecturas() const{
+    return leer();
+}

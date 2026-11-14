@@ -9,10 +9,10 @@ const char* Sensor::getNombre()const{
 }
 
 void Sensor::mostrarEstados(){
-    Serial.print("medidas del sensor ");
+    Serial.print("medidas del sensor: ");
     Serial.print(getNombre());
     Serial.print(": ");
-    Serial.print(leer());
+    Serial.print(obtenerLecturas());
     Serial.print(" ");
     Serial.println(unidad());
 }

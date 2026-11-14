@@ -15,6 +15,8 @@ explicit Sensor(const char* nombre);
 
 const char* getNombre()const;
 
+virtual double obtenerLecturas() const = 0;
+
 void mostrarEstados();
 
 virtual ~Sensor()=default;

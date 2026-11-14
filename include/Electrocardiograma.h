@@ -13,6 +13,8 @@ public:
 
 explicit Electrocardiograma(const char* nombre);
 
+double obtenerLecturas() const override;
+
 
 };
 

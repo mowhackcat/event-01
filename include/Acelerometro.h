@@ -13,6 +13,8 @@ const char* unidad() const override;
 public:
 explicit Acelerometro(const char* nombre);
 
+double obtenerLecturas() const override;
+
 };
 
 #endif

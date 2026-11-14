@@ -9,3 +9,7 @@ double Temperatura::leer() const{
 const char* Temperatura::unidad() const{
     return "C";
 }
+
+double Temperatura::obtenerLecturas() const{
+    return leer();
+}

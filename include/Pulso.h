@@ -12,6 +12,8 @@ const char* unidad() const override;
 
 public:
 explicit Pulso(const char* nombre);
+
+double obtenerLecturas() const override;
 };
 
 #endif

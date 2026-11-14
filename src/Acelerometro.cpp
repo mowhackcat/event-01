@@ -10,5 +10,8 @@ const char* Acelerometro::unidad() const {
     return "m/s^2";
 }
 
+double Acelerometro::obtenerLecturas() const{
+    return leer();
+}
 
 

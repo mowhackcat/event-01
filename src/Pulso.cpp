@@ -9,3 +9,7 @@ double Pulso::leer() const{
 const char* Pulso::unidad() const{
     return "bpm";
 }
+
+double Pulso::obtenerLecturas() const{
+    return leer();
+}
