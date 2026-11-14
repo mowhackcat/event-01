@@ -2,6 +2,8 @@
 #define SENSOR_H
 
 #include <string>
+#include <iostream>
+#include <stdexcept>
 
 
 class Sensor {
@@ -9,9 +11,15 @@ private:
 std::string nombre;
 public:
 explicit Sensor(std::string nombre);
+
 virtual double leer () const = 0;
-std::string getNombre()const;
-virtual std::string unidad() const {return "indefinido";};
+
+const std::string& getNombre()const;
+
+virtual const std::string& unidad() const {return "indefinido";};
+
+void mostrarEstados();
+
 virtual ~Sensor()=default;
 };
 

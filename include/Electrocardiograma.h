@@ -9,7 +9,8 @@ private:
 public:
 
 explicit Electrocardiograma(std::string nombre);
-virtual double leer () const override;
+double leer () const override;
+const std::string& unidad() const override;
 };
 
 #endif
