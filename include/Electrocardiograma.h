@@ -1,8 +1,15 @@
 #ifndef ELECTROCARDIONGRAMA_H
 #define ELECTROCARDIONGRAMA_H
 
-class Electrocardiograma: public Sensor{
-    
-}
+#include "Sensor.h"
+
+class Electrocardiograma : public Sensor{
+private:
+
+public:
+
+explicit Electrocardiograma(std::string nombre);
+virtual double leer () const override;
+};
 
 #endif
