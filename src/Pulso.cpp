@@ -3,7 +3,7 @@
 Pulso::Pulso(const char* nombre):Sensor(nombre){}
 
 double Pulso::leer() const{
-    return analogRead(36);
+    return random(0, 89);
 }
 
 const char* Pulso::unidad() const{

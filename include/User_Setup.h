@@ -11,4 +11,5 @@
 #define TFT_RST  -1
 #define TFT_BL   21
 
+#define TOUCH_CS 33
 #define SPI_FREQUENCY 10000000

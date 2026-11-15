@@ -1,33 +1,53 @@
 #include <Arduino.h>
 #include <TFT_eSPI.h>
+#include <math.h>
 #include "Electrocardiograma.h"
-#include "Acelerometro.h"
+#include "Radiometro.h"
 #include "Temperatura.h"
+#include "Hidrogeno.h"
 
-Electrocardiograma electrocardiograma("electrocardiograma");
-Acelerometro acelerometro("acelerometro");
-Temperatura temperatura("temperatura");
 
 TFT_eSPI tft;
+Electrocardiograma electrocardiograma("electrocardiograma");
+Radiometro radiometro("radiometro");
+Temperatura temperatura("temperatura");
+Hidrogeno hidrogeno("hidrogeno");
+
 
 void setup() {
     Serial.begin(115200);
-    pinMode(TFT_BL, OUTPUT);
+pinMode(TFT_BL, OUTPUT);
     digitalWrite(TFT_BL, HIGH);
 
     tft.init();
- 
-        tft.fillScreen(TFT_WHITE);
-    tft.setTextColor(TFT_BLACK);
-    tft.setTextSize(2);
 
-    tft.setCursor(10, 15);
-    tft.println("Lecturas de sensores");
+for (int rotacion = 0; rotacion < 4; rotacion++) {
+tft.setRotation(rotacion);
+tft.fillScreen(TFT_WHITE);
+
+Serial.printf("Rotacion %d: %d x %d\n",
+rotacion, tft.width(), tft.height());
+delay(4000);
+}
 }
 
 void loop() {
+tft.fillScreen(TFT_WHITE);
+
+
+
+
+tft.fillRect(0, 45, electrocardiograma.obtenerLecturas(), 35, TFT_BLUE);
+tft.fillRect(0, 80, radiometro.obtenerLecturas(), 35, TFT_GREEN);
+tft.fillRect(0, 115, temperatura.obtenerLecturas(), 35, TFT_RED);
+tft.fillRect(0, 150, hidrogeno.obtenerLecturas(),35, TFT_SKYBLUE);
+tft.setCursor(20, 45);
 electrocardiograma.mostrarEstados();
-tft.setCursor(10, 130);
-tft.print(electrocardiograma.obtenerLecturas());
-    delay(2500);
+radiometro.mostrarEstados();
+temperatura.mostrarEstados();
+hidrogeno.mostrarEstados();
+
+
+delay(700);
+
 }

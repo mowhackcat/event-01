@@ -3,7 +3,7 @@
 Temperatura::Temperatura(const char* nombre):Sensor(nombre){}
 
 double Temperatura::leer() const{
-    return analogRead(37);
+    return random(0, 50);
 }
 
 const char* Temperatura::unidad() const{
