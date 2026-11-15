@@ -3,7 +3,7 @@
 Acelerometro::Acelerometro(const char* nombre):Sensor(nombre){}
 
 double Acelerometro::leer() const{
-    return analogRead(A2);
+    return 40;
 }
 
 const char* Acelerometro::unidad() const {
