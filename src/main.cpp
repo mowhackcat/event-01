@@ -1,53 +1,79 @@
+
 #include <Arduino.h>
 #include <TFT_eSPI.h>
-#include <math.h>
 #include "Electrocardiograma.h"
 #include "Radiometro.h"
 #include "Temperatura.h"
 #include "Hidrogeno.h"
-
+#include "Dispositivo.h"
+#include "pulso.h"
 
 TFT_eSPI tft;
 Electrocardiograma electrocardiograma("electrocardiograma");
 Radiometro radiometro("radiometro");
 Temperatura temperatura("temperatura");
 Hidrogeno hidrogeno("hidrogeno");
+Pulso pulso("pulso");
 
+Dispositivo dispositivo("pulsera");
 
 void setup() {
-    Serial.begin(115200);
-pinMode(TFT_BL, OUTPUT);
-    digitalWrite(TFT_BL, HIGH);
+dispositivo.registrarSensores(&electrocardiograma);
+dispositivo.registrarSensores(&radiometro);
+dispositivo.registrarSensores(&temperatura);
+dispositivo.registrarSensores(&hidrogeno);
+dispositivo.registrarSensores(&pulso);
 
-    tft.init();
+Serial.begin(115200);
+  pinMode(TFT_BL, OUTPUT);
+  digitalWrite(TFT_BL, HIGH);
 
-for (int rotacion = 0; rotacion < 4; rotacion++) {
-tft.setRotation(rotacion);
-tft.fillScreen(TFT_WHITE);
-
-Serial.printf("Rotacion %d: %d x %d\n",
-rotacion, tft.width(), tft.height());
-delay(4000);
-}
+  tft.init();
+  tft.setRotation(1); 
+  tft.fillScreen(TFT_WHITE);
+  tft.setTextSize(2); 
 }
 
 void loop() {
 tft.fillScreen(TFT_WHITE);
 
+tft.setCursor(10, 45);
+tft.setTextColor(TFT_BLUE, TFT_WHITE);
+tft.print("electrocardiograma: ");
+tft.print(electrocardiograma.obtenerLecturas());
+tft.print(" mV");
 
 
 
-tft.fillRect(0, 45, electrocardiograma.obtenerLecturas(), 35, TFT_BLUE);
-tft.fillRect(0, 80, radiometro.obtenerLecturas(), 35, TFT_GREEN);
-tft.fillRect(0, 115, temperatura.obtenerLecturas(), 35, TFT_RED);
-tft.fillRect(0, 150, hidrogeno.obtenerLecturas(),35, TFT_SKYBLUE);
-tft.setCursor(20, 45);
-electrocardiograma.mostrarEstados();
-radiometro.mostrarEstados();
-temperatura.mostrarEstados();
-hidrogeno.mostrarEstados();
+tft.setCursor(10, 80);
+tft.setTextColor(TFT_DARKGREEN, TFT_WHITE);
+tft.print("radiometro: ");
+tft.print(radiometro.obtenerLecturas());
+tft.print(" bpm");
 
 
-delay(700);
+tft.setCursor(10, 115);
+tft.setTextColor(TFT_RED, TFT_WHITE);
+tft.print("temperatura: ");
+tft.print(temperatura.obtenerLecturas());
+tft.print(" °C");
+
+
+tft.setCursor(10, 150);
+tft.setTextColor(TFT_SKYBLUE, TFT_WHITE);
+tft.print("hidrogeno: ");
+tft.print(hidrogeno.obtenerLecturas());
+tft.print(" ppm ");
+
+tft.setCursor(10, 185);
+tft.setTextColor(TFT_ORANGE, TFT_WHITE);
+tft.print("pulso: ");
+tft.print(pulso.obtenerLecturas());
+tft.print(" bpm");
+
+dispositivo.mostrarCantidaddes();
+
+delay(500);
+
 
 }
